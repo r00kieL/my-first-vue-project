@@ -98,19 +98,19 @@
         <ul class="links">
           <li class="link">
             <a href="#">
-              <img src="@/assets/images/icons/微信.svg" />
+              <img src="@/assets/images/icons/微信.png" />
               <p>微信公众号</p>
             </a>
           </li>
           <li class="link">
             <a href="#">
-              <img src="@/assets/images/icons/steam.svg" />
+              <img src="@/assets/images/icons/steam.png" />
               <p>Steam</p>
             </a>
           </li>
           <li class="link">
             <a href="#">
-              <img src="@/assets/images/icons/哔哩哔哩.svg" />
+              <img src="@/assets/images/icons/bilibili.png" />
               <p>BiliBili</p>
             </a>
           </li>
