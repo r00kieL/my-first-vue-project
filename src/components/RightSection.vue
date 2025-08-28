@@ -5,7 +5,7 @@
   <section class="right">
     <header class="header-container">
       <h1 class="title">self-introduction</h1>
-      <p class="subtitle">Learning front-end development · Love motion effects and accessibility</p>
+      <p class="subtitle">Learning front-end development · motion effects and accessibility</p>
     </header>
 
     <section class="section-container">

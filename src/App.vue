@@ -1,11 +1,32 @@
 <script setup>
+//-----引入vue内置功能-----
+import { reactive } from 'vue'
+
+// -----引入组件-----
 import LeftSection from '@/components/LeftSection.vue'
 import RightSection from '@/components/RightSection.vue'
+
+// -----设置props-----
+import avatarImg from '@/assets/images/profile_photo.jpg'
+const profile = reactive({
+  avatar: avatarImg,
+  name: 'Ryovik',
+})
+
+import wechatIcon from '@/assets/images/icons/微信.png'
+import steamIcon from '@/assets/images/icons/steam.png'
+import biliIcon from '@/assets/images/icons/bilibili.png'
+const links = reactive([
+  { id: 1, href: '#', icon: wechatIcon, name: '微信公众号' },
+  { id: 2, href: '#', icon: steamIcon, name: 'Steam' },
+  { id: 3, href: '#', icon: biliIcon, name: 'BiliBili' },
+])
+
 </script>
 
 <template>
   <main class="glass-container">
-    <left-section />
+    <left-section :profile="profile" :links="links" />
 
     <right-section />
   </main>

@@ -1,32 +1,23 @@
 <script setup>
-
+const props = defineProps({
+  profile: Object,
+  links: Array,
+})
 </script>
 
 <template>
   <aside class="left">
     <figure class="profile">
-      <img src="@/assets/images/profile_photo.jpg" alt="头像" />
-      <figcaption class="name">Ryovik</figcaption>
+      <img :src="props.profile.avatar" alt="头像" />
+      <figcaption class="name">{{ props.profile.name }}</figcaption>
     </figure>
 
     <nav class="links-container">
       <ul class="links">
-        <li class="link">
-          <a href="#">
-            <img src="@/assets/images/icons/微信.png" />
-            <p>微信公众号</p>
-          </a>
-        </li>
-        <li class="link">
-          <a href="#">
-            <img src="@/assets/images/icons/steam.png" />
-            <p>Steam</p>
-          </a>
-        </li>
-        <li class="link">
-          <a href="#">
-            <img src="@/assets/images/icons/bilibili.png" />
-            <p>BiliBili</p>
+        <li class="link" v-for="link in links" :key="link.id">
+          <a :href=link.href>
+            <img :src=link.icon />
+            <p>{{link.name}}</p>
           </a>
         </li>
       </ul>
@@ -114,17 +105,11 @@
 .link a:hover {
   transform: translateY(-10px);
 
-  /* 玻璃味道↑ */
+  /*!* 玻璃味道↑ *!*/
   backdrop-filter: blur(15px) saturate(120%) brightness(110%);
-  /* 半透明白色 */
+  /*!* 半透明白色 *!*/
   background: rgba(255, 255, 255, 0.1);
-  /* 圆角 */
+  /*!* 圆角 *!*/
   border-radius: 12px;
-  /* 阴影 */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  /* 细边 */
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  /* 玻璃折射的第二道细线 */
-  outline: 1px solid rgba(255, 255, 255, 0.06);
 }
 </style>
