@@ -6,12 +6,11 @@ const { header, section } = defineProps({
 })
 
 // 声明emit
-const emit = defineEmits(['flip']);
+const emit = defineEmits(['flip'])
 
-function flipCard(){
-  emit('flip', true);
+function flipCard() {
+  emit('flip', true)
 }
-
 </script>
 
 <template>
@@ -26,7 +25,9 @@ function flipCard(){
     </section>
 
     <footer class="footer-container">
-      <button @click="flipCard" class="flip-btn" type="button" aria-label="查看背面">翻转背面</button>
+      <button @click="flipCard" class="flip-btn" type="button" aria-label="查看背面">
+        翻转背面
+      </button>
     </footer>
   </section>
 </template>
@@ -95,8 +96,20 @@ function flipCard(){
   height: 35px;
 
   border-radius: 10px;
+
+  /* 半透明背景，让背后能透出来 */
+  background: rgba(255, 255, 255, 0.1);
+
+  /* 毛玻璃效果 */
+  backdrop-filter: blur(10px) saturate(120%) brightness(110%);
+
+  /* 玻璃边框效果 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  color: white; /* 避免文字被背景干扰 */
 }
-.footer-container .flip-btn:hover{
+.footer-container .flip-btn:hover {
   cursor: pointer;
 }
 </style>

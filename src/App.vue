@@ -5,6 +5,7 @@ import { reactive, ref } from 'vue'
 // -----引入组件-----
 import LeftSection from '@/components/front/LeftSection.vue'
 import RightSection from '@/components/front/RightSection.vue'
+import  ParticlesEffectEffect from '@/components/ParticlesEffect.vue'
 
 // -----引入组件数据-----
 import { profile, links } from '@/data/componentsData/leftSectionData.js'
@@ -33,10 +34,13 @@ function flipCard() {
       </section>
 
       <section class="card-container-back">
+        这是背面，暂无内容
         <button class="flip-btn" @click="flipCard">翻转正面</button>
       </section>
     </div>
   </main>
+
+  <ParticlesEffectEffect />
 </template>
 
 <!--card-container css-->
@@ -47,6 +51,8 @@ function flipCard() {
 
   position: relative;
   perspective: 1000px;
+
+  z-index: 2;
 }
 </style>
 
@@ -127,6 +133,18 @@ function flipCard() {
   height: 35px;
 
   border-radius: 10px;
+
+  /* 半透明背景，让背后能透出来 */
+  background: rgba(255, 255, 255, 0.1);
+
+  /* 毛玻璃效果 */
+  backdrop-filter: blur(10px) saturate(120%) brightness(110%);
+
+  /* 玻璃边框效果 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  color: white; /* 避免文字被背景干扰 */
 }
 .flip-btn:hover {
   cursor: pointer;
