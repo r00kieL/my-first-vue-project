@@ -3,8 +3,8 @@
 import { reactive, ref } from 'vue'
 
 // -----引入组件-----
-import LeftSection from '@/components/LeftSection.vue'
-import RightSection from '@/components/RightSection.vue'
+import LeftSection from '@/components/front/LeftSection.vue'
+import RightSection from '@/components/front/RightSection.vue'
 
 // -----引入组件数据-----
 import { profile, links } from '@/data/componentsData/leftSectionData.js'
@@ -16,26 +16,24 @@ const headerState = reactive(header)
 const sectionState = reactive(section)
 
 // 按钮翻转的响应式变量
-const isFlipped = ref(false)
+const angle = ref(0)
+
+function flipCard() {
+  angle.value += 180
+}
 </script>
 
 <template>
   <main class="card-container">
-    <div class="card-rotator" :class="{ 'card-rotator--flipped': isFlipped }">
+    <div class="card-rotator" :style="{ transform: `rotateY(${angle}deg)` }">
       <section class="card-container-front">
         <LeftSection :profile="profileState" :links="linksState" />
 
-        <RightSection
-          @flip="(msg) => (isFlipped = msg)"
-          :header="headerState"
-          :section="sectionState"
-        />
+        <RightSection @flip="flipCard" :header="headerState" :section="sectionState" />
       </section>
 
       <section class="card-container-back">
-
-
-        这是背面这是背面这是背面这是背面这是背面这是背面这是背面这是背面这是
+        <button class="flip-btn" @click="flipCard">翻转正面</button>
       </section>
     </div>
   </main>
@@ -59,11 +57,7 @@ const isFlipped = ref(false)
   inset: 0;
 
   transform-style: preserve-3d;
-  transition: transform 1s;
-  /*transform: rotateY(180deg);*/
-}
-.card-rotator--flipped {
-  transform: rotateY(180deg);
+  transition: transform 1.5s;
 }
 </style>
 
@@ -119,5 +113,22 @@ const isFlipped = ref(false)
 <style scoped>
 .card-container-back {
   transform: rotateY(180deg);
+}
+</style>
+
+<!--back button-->
+<style scoped>
+.flip-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+
+  width: 110px;
+  height: 35px;
+
+  border-radius: 10px;
+}
+.flip-btn:hover {
+  cursor: pointer;
 }
 </style>

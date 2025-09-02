@@ -26,7 +26,7 @@ function flipCard(){
     </section>
 
     <footer class="footer-container">
-      <button @click="flipCard" class="flip-btn" type="button" aria-label="查看背面">反转背面</button>
+      <button @click="flipCard" class="flip-btn" type="button" aria-label="查看背面">翻转背面</button>
     </footer>
   </section>
 </template>
@@ -95,7 +95,6 @@ function flipCard(){
   height: 35px;
 
   border-radius: 10px;
-
 }
 .footer-container .flip-btn:hover{
   cursor: pointer;
