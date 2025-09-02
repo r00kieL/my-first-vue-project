@@ -1,42 +1,80 @@
 <script setup>
 //-----引入vue内置功能-----
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 // -----引入组件-----
 import LeftSection from '@/components/LeftSection.vue'
 import RightSection from '@/components/RightSection.vue'
 
-// -----设置props-----
-import avatarImg from '@/assets/images/profile_photo.jpg'
-const profile = reactive({
-  avatar: avatarImg,
-  name: 'Ryovik',
-})
+// -----引入组件数据-----
+import { profile, links } from '@/data/componentsData/leftSectionData.js'
+import { header, section } from '@/data/componentsData/rightSectionData.js'
+// -----转换成响应式-----
+const profileState = reactive(profile)
+const linksState = reactive(links)
+const headerState = reactive(header)
+const sectionState = reactive(section)
 
-import wechatIcon from '@/assets/images/icons/微信.png'
-import steamIcon from '@/assets/images/icons/steam.png'
-import biliIcon from '@/assets/images/icons/bilibili.png'
-const links = reactive([
-  { id: 1, href: '#', icon: wechatIcon, name: '微信公众号' },
-  { id: 2, href: '#', icon: steamIcon, name: 'Steam' },
-  { id: 3, href: '#', icon: biliIcon, name: 'BiliBili' },
-])
-
+// 按钮翻转的响应式变量
+const isFlipped = ref(false)
 </script>
 
 <template>
-  <main class="glass-container">
-    <left-section :profile="profile" :links="links" />
+  <main class="card-container">
+    <div class="card-rotator" :class="{ 'card-rotator--flipped': isFlipped }">
+      <section class="card-container-front">
+        <LeftSection :profile="profileState" :links="linksState" />
 
-    <right-section />
+        <RightSection
+          @flip="(msg) => (isFlipped = msg)"
+          :header="headerState"
+          :section="sectionState"
+        />
+      </section>
+
+      <section class="card-container-back">
+
+
+        这是背面这是背面这是背面这是背面这是背面这是背面这是背面这是背面这是
+      </section>
+    </div>
   </main>
 </template>
 
-<!--glass-container css-->
+<!--card-container css-->
 <style scoped>
-.glass-container {
+.card-container {
   height: 500px;
   width: 900px;
+
+  position: relative;
+  perspective: 1000px;
+}
+</style>
+
+<!--card-rotator css--->
+<style scoped>
+.card-rotator {
+  position: absolute;
+  inset: 0;
+
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  /*transform: rotateY(180deg);*/
+}
+.card-rotator--flipped {
+  transform: rotateY(180deg);
+}
+</style>
+
+<!--card-container-front  and card-container-back css-->
+<style scoped>
+.card-container-front,
+.card-container-back {
+  inset: 0;
+  position: absolute;
+
+  backface-visibility: hidden;
 
   /* 玻璃味道↑ */
   backdrop-filter: blur(15px) saturate(120%) brightness(110%);
@@ -50,16 +88,19 @@ const links = reactive([
   border: 1px solid rgba(255, 255, 255, 0.18);
   /* 玻璃折射的第二道细线 */
   outline: 1px solid rgba(255, 255, 255, 0.06);
+}
+</style>
 
+<!--card-container-front css-->
+<style scoped>
+.card-container-front {
   overflow: hidden;
 
   display: grid;
   grid-template-columns: 30% 70%;
-
-  position: relative;
 }
 
-.glass-container::before {
+.card-container-front::before {
   content: '';
 
   position: absolute;
@@ -67,10 +108,16 @@ const links = reactive([
   width: 2px;
 
   background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.5), transparent);
-  /*background-color: red;*/
 
   left: 30%;
   top: 10%;
   bottom: 10%;
+}
+</style>
+
+<!--card-container-back css-->
+<style scoped>
+.card-container-back {
+  transform: rotateY(180deg);
 }
 </style>

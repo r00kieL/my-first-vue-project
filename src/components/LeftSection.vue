@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+const {profile, links} = defineProps({
   profile: Object,
   links: Array,
 })
@@ -8,8 +8,8 @@ const props = defineProps({
 <template>
   <aside class="left">
     <figure class="profile">
-      <img :src="props.profile.avatar" alt="头像" />
-      <figcaption class="name">{{ props.profile.name }}</figcaption>
+      <img :src="profile.avatar" alt="头像" />
+      <figcaption class="name">{{ profile.name }}</figcaption>
     </figure>
 
     <nav class="links-container">
