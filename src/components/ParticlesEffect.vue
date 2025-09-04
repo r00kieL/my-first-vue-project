@@ -2,11 +2,11 @@
 import { reactive } from 'vue'
 
 //粒子数量
-const count = 30
+const count = 300
 
 // 创建单个粒子函数
 const createParticle = () => ({
-  x: Math.random() * 90,
+  x: Math.random() * 99,
   size: 6 + Math.random() * 10,
   duration: 8 + Math.random() * 6,
   delay: Math.random() * 6,
@@ -23,10 +23,11 @@ const particles = reactive(Array.from({ length: count }, createParticle))
       v-for="(p, i) in particles"
       :key="i"
       :style="{
-        '--x': p.x + '%',
-        '--size': p.size + 'px',
-        '--duration': p.duration + 's',
-        '--delay': p.delay + 's',
+        left: p.x + '%',
+        width: p.size + 'px',
+        height: p.size + 'px',
+        animationDuration: p.duration + 's',
+        animationDelay: p.delay + 's',
       }"
     ></div>
   </div>
@@ -51,19 +52,17 @@ const particles = reactive(Array.from({ length: count }, createParticle))
   opacity: 0;
   border-radius: 50%;
 
-  --x: 0%;
-  --size: 8px;
-  --duration: 10s;
-  --delay: 0s;
-
-  left: var(--x);
-  width: var(--size);
-  height: var(--size);
+  /*动态覆盖*/
+  left: 0%;
+  width: 0px;
+  height: 0px;
 
   animation-name: up_float;
-  animation-duration: var(--duration);
+  /*动态覆盖*/
+  animation-duration: 0s;
   animation-timing-function: linear;
-  animation-delay: var(--delay);
+  /*动态覆盖*/
+  animation-delay: 0s;
   animation-iteration-count: infinite;
 }
 
