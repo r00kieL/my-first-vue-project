@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 
 //粒子数量
-const count = 300
+const count = 30
 
 // 创建单个粒子函数
 const createParticle = () => ({
@@ -48,21 +48,31 @@ const particles = reactive(Array.from({ length: count }, createParticle))
   position: absolute;
   bottom: 0px;
 
-  background-color: red;
+  /*background-color: red;*/
   opacity: 0;
   border-radius: 50%;
 
+  /* 白色发光效果：中心亮、外圈渐隐 */
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0) 70%
+  );
+
+  filter: blur(1.2px); /* 柔化边缘 */
+
   /*动态覆盖*/
-  left: 0%;
-  width: 0px;
-  height: 0px;
+  left: auto;
+  width: auto;
+  height: auto;
 
   animation-name: up_float;
   /*动态覆盖*/
-  animation-duration: 0s;
+  animation-duration: initial;
   animation-timing-function: linear;
   /*动态覆盖*/
-  animation-delay: 0s;
+  animation-delay: initial;
   animation-iteration-count: infinite;
 }
 
