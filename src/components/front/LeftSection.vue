@@ -105,10 +105,10 @@ const {profile, links} = defineProps({
 .link a:hover {
   transform: translateY(-10px);
 
-  /*!* 玻璃味道↑ *!*/
-  backdrop-filter: blur(15px) saturate(120%) brightness(110%);
   /*!* 半透明白色 *!*/
   background: rgba(255, 255, 255, 0.1);
+  /*!* 玻璃味道↑ *!*/
+  backdrop-filter: blur(15px) saturate(120%) brightness(110%);
   /*!* 圆角 *!*/
   border-radius: 12px;
 }

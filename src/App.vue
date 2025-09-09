@@ -3,9 +3,10 @@
 import { reactive, ref } from 'vue'
 
 // -----引入组件-----
+import GlassNav from '@/components/GlassNav.vue'
 import LeftSection from '@/components/front/LeftSection.vue'
 import RightSection from '@/components/front/RightSection.vue'
-import  ParticlesEffectEffect from '@/components/ParticlesEffect.vue'
+import  ParticlesEffect from '@/components/ParticlesEffect.vue'
 
 // -----引入组件数据-----
 import { profile, links } from '@/data/componentsData/leftSectionData.js'
@@ -25,6 +26,8 @@ function flipCard() {
 </script>
 
 <template>
+  <GlassNav />
+
   <main class="card-container">
     <div class="card-rotator" :style="{ transform: `rotateY(${angle}deg)` }">
       <section class="card-container-front">
@@ -40,7 +43,7 @@ function flipCard() {
     </div>
   </main>
 
-  <ParticlesEffectEffect />
+  <ParticlesEffect />
 </template>
 
 <!--card-container css-->
@@ -76,10 +79,10 @@ function flipCard() {
 
   backface-visibility: hidden;
 
-  /* 玻璃味道↑ */
-  backdrop-filter: blur(15px) saturate(120%) brightness(110%);
   /* 半透明白色 */
   background: rgba(255, 255, 255, 0.1);
+  /* 玻璃味道↑ */
+  backdrop-filter: blur(15px) saturate(120%) brightness(110%);
   /* 圆角 */
   border-radius: 12px;
   /* 阴影 */
